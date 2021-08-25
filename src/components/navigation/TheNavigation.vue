@@ -12,9 +12,7 @@
 import { mapGetters } from "vuex";
 import { totalPrice } from "@/store/modules/mutation.types.js";
 export default {
-  computed: mapGetters("cart", {
-    totalPrice,
-  }),
+  computed: mapGetters("cart", [totalPrice]),
 };
 </script>
 
