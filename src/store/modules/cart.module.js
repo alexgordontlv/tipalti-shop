@@ -3,6 +3,7 @@ import {
   DECREMENT_PRODUCT_QUANTITY,
   REMOVE_ITEM_FROM_CART,
   INCREMENT_PRODUCT_QUANTITY,
+  removeCartItem,
 } from "./mutation.types";
 
 export default {
@@ -35,14 +36,11 @@ export default {
       commit(REMOVE_ITEM_FROM_CART, product);
       commit(`products/${INCREMENT_PRODUCT_QUANTITY}`, product, { root: true });
     },
-    emptyCart({ state, commit }) {
+    emptyCart({ state, dispatch }) {
       state.cartItems.forEach((item) => {
         const quantity = item.quantity;
         for (let index = 0; index < quantity; index++) {
-          commit(REMOVE_ITEM_FROM_CART, item);
-          commit(`products/${INCREMENT_PRODUCT_QUANTITY}`, item, {
-            root: true,
-          });
+          dispatch(removeCartItem, item);
         }
       });
     },

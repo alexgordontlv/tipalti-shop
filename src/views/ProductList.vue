@@ -16,7 +16,7 @@
 <script>
 import ProductListItem from "@/components/productlistitem/ProductListItem";
 import Spinner from "@/components/spinner/Spinner";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { fetchProducts } from "@/store/modules/mutation.types.js";
 
 export default {
@@ -25,15 +25,16 @@ export default {
       loading: false,
     };
   },
-  computed: mapState("products", {
-    products: (state) => state.products,
-  }),
+  methods: mapActions("products", [fetchProducts]),
+  computed: {
+    ...mapState("products", {
+      products: (state) => state.products,
+    }),
+  },
   created() {
     if (this.products.length === 0) {
       this.loading = true;
-      this.$store
-        .dispatch(`products/${fetchProducts}`)
-        .finally(() => (this.loading = false));
+      this.fetchProducts().finally(() => (this.loading = false));
     }
   },
   components: {
