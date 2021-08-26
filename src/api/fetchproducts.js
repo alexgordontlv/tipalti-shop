@@ -5,8 +5,6 @@ const fetchProductsApi = async () => {
   let data = null;
   try {
     const res = await axios.get("https://fakestoreapi.com/products");
-    console.log("myERROR2");
-
     data = res.data;
     return [data, error];
   } catch (err) {
