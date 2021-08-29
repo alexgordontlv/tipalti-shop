@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit --watch",
+    "test": "vue-cli-service test:unit --watch  --silent=false",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -27,7 +27,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "typescript": "~3.9.3",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-0",
+    "vuex-mock-store": "0.0.8"
   },
   "eslintConfig": {
     "root": true,

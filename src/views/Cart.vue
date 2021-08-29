@@ -17,7 +17,7 @@
           class="table-row "
           v-for="(item, index) in cartItems"
           :key="item.id"
-          :class="index % 2 === 0 ? `table-row-even` : ``"
+          :class="classIfIsOdd(index)"
         >
           <div class="col col-2" data-label="Customer Name">
             {{ item.title }}
@@ -59,7 +59,10 @@ export default {
       cartItems: (state) => state.cartItems,
     }),
   },
-  methods: mapActions("cart", [addCartItem, removeCartItem, emptyCart]),
+  methods: {
+    ...mapActions("cart", [addCartItem, removeCartItem, emptyCart]),
+    classIfIsOdd: (index) => (index % 2 === 0 ? `table-row-even` : ``),
+  },
 };
 </script>
 
